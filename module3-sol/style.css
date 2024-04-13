@@ -1,0 +1,55 @@
+nav.navbar-default, nav.navbar-default button, nav.navbar-default .navbar-toggle:focus, nav.navbar-default .navbar-toggle:hover, section  {
+    background-color: #999999;
+}
+
+nav.navbar-default {
+    border: 0;
+}
+
+nav.navbar-default .navbar-toggle .icon-bar {
+    background-color: lightgrey;
+}
+
+nav.navbar-default .navbar-collapse.bg-diff, .navbar-default .navbar-form {
+    background-color: #FFF;
+}
+
+nav.navbar-default .navbar-brand {
+    color: #000;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.navbar-collapse a {
+    text-align: center;
+}
+
+main {
+    padding: 0 30px;
+}
+
+main > p {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #000;
+}
+
+main section {
+    height: 1000px;
+    margin-top: 40px;
+    padding: 20px 30px;
+}
+
+@media (min-width: 768px) {
+    nav.navbar-default .navbar-collapse.bg-diff, .navbar-default .navbar-form {
+        background-color: #999999;
+    }
+
+    nav.navbar>.container-fluid .navbar-brand {
+        margin-left: 0;
+    }
+
+    nav.navbar {
+        border-radius: 0;
+    }
+}
