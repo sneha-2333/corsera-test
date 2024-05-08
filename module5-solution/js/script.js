@@ -103,7 +103,7 @@ function buildAndShowHomeHTML (categories) {
       // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
       // variable's name implies it expects.
       // var chosenCategoryShortName = ....
-      var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
+      var chosenCategoryShortName = chooseRandomCategory(categories);
       var chosenCategoryShortName = chosenCategory.short_name;
 
 
@@ -122,6 +122,7 @@ function buildAndShowHomeHTML (categories) {
       chosenCategoryShortName = "'" + chosenCategoryShortName + "'";
       var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", chosenCategoryShortName);
       var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategoryShortName + "'");
+      
 
 
       // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
@@ -129,7 +130,32 @@ function buildAndShowHomeHTML (categories) {
       // of how to do that.
       // ....
       insertHtml('#main-content', homeHtmlToInsertIntoMainPage);
-      
+      // Builds HTML for the home page based on categories array
+function buildAndShowHomeHTML(categories) {
+  // Load home snippet page
+  $ajaxUtils.sendGetRequest(
+    homeHtmlUrl,
+    function (homeHtml) {
+
+      // Call chooseRandomCategory with the retrieved categories
+      var chosenCategory = chooseRandomCategory(categories);
+
+      // Extract the short_name property from the chosenCategory object
+      var chosenCategoryShortName = chosenCategory.short_name;
+
+      // Surround the chosenCategoryShortName with quotes
+      chosenCategoryShortName = "'" + chosenCategoryShortName + "'";
+
+      // Use insertProperty to substitute {{randomCategoryShortName}} in homeHtml
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", chosenCategoryShortName);
+
+      // Insert the produced HTML into the main page using insertHtml function
+      insertHtml('#main-content', homeHtmlToInsertIntoMainPage);
+    },
+    false // False here because we are getting just regular HTML from the server, so no need to process JSON.
+  );
+}
+
 
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
